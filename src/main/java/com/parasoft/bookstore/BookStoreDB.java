@@ -75,18 +75,17 @@ public class BookStoreDB extends DB {
             NL_TABLE_AUTHOR + "," +
             NL_TABLE_PUBLISHER +
             " WHERE " + 
-            "LCASE(" + NL_TABLE_BOOK + "." + NL_TITLE + ")" + " LIKE ? AND " +
+            "LCASE(" + NL_TABLE_BOOK + "." + NL_TITLE + ")" + " LIKE '%"+ titlePart.toLowerCase() +"%' AND " +
             NL_TABLE_BOOK + "." + NL_ISBN + " = " +
             NL_TABLE_AUTHOR + "." + NL_ISBN + " AND " +
             NL_TABLE_BOOK + ".publisher_id = " +
             NL_TABLE_PUBLISHER + "." + NL_ID;
         
         BookStoreDB db = getDBInstance();
-        PreparedStatement stmt = db.prepareStatement(query, 
-                                                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                                     ResultSet.CONCUR_UPDATABLE);    
-        stmt.setString(1, "%" + titlePart.toLowerCase() + "%");
-        ResultSet rs = stmt.executeQuery();
+
+        // Purposely make the request in an insecure way to demonstrate SQL injections
+        Statement stmt = db.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ResultSet rs = stmt.executeQuery(query);
         boolean hasNext = rs.first();
         Vector<Book> books = new Vector<Book>();
         

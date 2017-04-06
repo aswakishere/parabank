@@ -136,8 +136,9 @@ public class JdbcCustomerDao extends NamedParameterJdbcDaoSupport implements Cus
      */
     @Override
     public void updateCustomer(final Customer customer) {
+        // Purposely introduce a security failure to demonstrate SQL injections in the REST API
         final String SQL =
-            "UPDATE Customer SET first_name = :firstName, last_name = :lastName, address = :address.street, city = :address.city, state = :address.state, zip_code = :address.zipCode, phone_number = :phoneNumber, ssn = :ssn, username = :username, password = :password WHERE id = :id";
+            "UPDATE Customer SET first_name = '" + customer.getFirstName() + "', last_name = :lastName, address = :address.street, city = :address.city, state = :address.state, zip_code = :address.zipCode, phone_number = :phoneNumber, ssn = :ssn, username = :username, password = :password WHERE id = :id";
 
         final BeanPropertySqlParameterSource source = new BeanPropertySqlParameterSource(customer);
         getNamedParameterJdbcTemplate().update(SQL, source);

@@ -34,8 +34,13 @@ class JdbcTransactionQueryRestrictor {
         }
 
         if (criteria.getTransactionType() != null && !"All".equals(criteria.getTransactionType())) {
-            restrictionsSql += " AND TYPE = ?";
-            params.add(TransactionType.valueOf(criteria.getTransactionType()).ordinal());
+            String type = criteria.getTransactionType();
+            try {
+                type = Integer.toString(TransactionType.valueOf(criteria.getTransactionType()).ordinal());
+            } catch (IllegalArgumentException e) {
+                // just pass it along so we can introduce SQL injection vulnerabilities
+            }
+            restrictionsSql += " AND TYPE = '" + type + "'";
         }
 
         log.info("Searching transactions by activity with parameters: " + params);
