@@ -395,6 +395,34 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+			
+			
+				<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.7.8</version>
+						<configuration>
+							<address>localhost</address>
+							<destFile>${project.build.directory}/jacoco.exec</destFile>
+							<port>444</port>
+							<reset>true</reset>
+							<append>false</append>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>dump</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+			
+			
+			
+			
+			
+			
 				<plugin>
 					<groupId>org.raml.plugins</groupId>
 					<artifactId>jaxrs-raml-maven-plugin</artifactId>
