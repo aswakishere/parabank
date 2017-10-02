@@ -404,7 +404,7 @@
 						<configuration>
 							<address>localhost</address>
 							<destFile>${project.build.directory}/jacoco.exec</destFile>
-							<port>444</port>
+							<port>10001</port>
 							<reset>true</reset>
 							<append>false</append>
 						</configuration>
