@@ -87,6 +87,10 @@
 			</releases>
 		</repository>
 
+		<!--<repository>-->
+          <!--<id>Parasoft</id>-->
+          <!--<url>http://build.parasoft.com/maven/</url>-->
+      	<!--</repository>-->
 	</repositories>
 
 	<pluginRepositories>
@@ -124,6 +128,10 @@
 				<enabled>true</enabled>
 			</releases>
 		</pluginRepository>
+		 <!--<pluginRepository>-->
+          <!--<id>Parasoft</id>-->
+          <!--<url>http://build.parasoft.com/maven</url>-->
+      	<!--</pluginRepository>-->
 	</pluginRepositories>
 
 	<dependencies>
@@ -389,39 +397,26 @@
 			<version>${hamcrest.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!--<dependency>-->
+	      <!--<groupId>Parasoft</groupId>-->
+	      <!--<artifactId>jtest</artifactId>-->
+	      <!--<version>9.5.0</version> &lt;!&ndash; See below for available versions &ndash;&gt;-->
+	    <!--</dependency>-->
 
 	</dependencies>
 
 	<build>
 		<pluginManagement>
 			<plugins>
-			
-			
-				<plugin>
-						<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.7.8</version>
-						<configuration>
-							<address>localhost</address>
-							<destFile>${project.build.directory}/jacoco.exec</destFile>
-							<port>10001</port>
-							<reset>true</reset>
-							<append>false</append>
-						</configuration>
-						<executions>
-							<execution>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>dump</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-			
-			
-			
-			
-			
+				<!--<plugin>-->
+		        	<!--<groupId>Parasoft</groupId>-->
+		        	<!--<artifactId>maven-parasoft-plugin</artifactId>-->
+		        	<!--<version>3.0</version>-->
+		      	<!--</plugin>-->
+
+
+				<!-- Apply more sensible defaults for user projects -->
+
 			
 				<plugin>
 					<groupId>org.raml.plugins</groupId>
@@ -554,6 +549,40 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.apache.maven.plugins</groupId>-->
+				<!--<artifactId>maven-failsafe-plugin</artifactId>-->
+				<!--<version>2.18.1</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<goals>-->
+							<!--<goal>integration-test</goal>-->
+							<!--<goal>verify</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.8</version>
+				<configuration>
+					<address>localhost</address>
+					<destFile>${project.build.directory}/jacoco.exec</destFile>
+					<port>10001</port>
+					<reset>true</reset>
+					<append>false</append>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>dump</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
