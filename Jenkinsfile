@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment{
+        CONN = 'marcin@172.17.0.1'
+        TOMCAT_HOME = '/home/marcin/tools/apache-tomcat-8.5.23'
+    }
     tools {
         maven 'mvn_3.5'
         jdk 'JDK1.8'
@@ -22,14 +26,14 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
-                sh 'ssh marcin@172.17.0.1 rm -R /home/marcin/tools/apache-tomcat-8.5.23/webapps/parabank-3.0.0*'
-                sh 'ssh marcin@172.17.0.1 ls /home/marcin/tools/apache-tomcat-8.5.23/webapps/'
-                sh 'scp target/parabank-3.0.0-SNAPSHOT.war marcin@172.17.0.1:/home/marcin/tools/apache-tomcat-8.5.23/webapps/'
+                sh 'ssh ${CONN} rm -R ${TOMCAT_HOME}/webapps/parabank-3.0.0*'
+                sh 'ssh ${CONN} ls ${TOMCAT_HOME}/webapps/'
+                sh 'scp target/parabank-3.0.0-SNAPSHOT.war ${CONN}:${TOMCAT_HOME}/webapps/'
             }
         }
         stage ('Start tomcat') {
             steps {
-                sh 'ssh marcin@172.17.0.1 "/home/marcin/tools/apache-tomcat-8.5.23/bin/catalina.sh start"'
+                sh 'ssh ${CONN} "${TOMCAT_HOME}/bin/catalina.sh start"'
             }
         }
         stage ('Functional tests') {
@@ -45,7 +49,7 @@ pipeline {
         }
         stage ('Stop tomcat') {
             steps {
-                sh 'ssh marcin@172.17.0.1 "/home/marcin/tools/apache-tomcat-8.5.23/bin/catalina.sh stop"'
+                sh 'ssh ${CONN} "${TOMCAT_HOME}/bin/catalina.sh stop"'
             }
         }
     }
