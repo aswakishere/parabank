@@ -404,7 +404,33 @@
     <!--<artifactId>jtest</artifactId>-->
     <!--<version>9.5.0</version> &lt;!&ndash; See below for available versions &ndash;&gt;-->
     <!--</dependency>-->
-
+    <dependency>
+      <groupId>net.sf.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>2.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <!-- why using guava here? see: https://stackoverflow.com/questions/42421148/wait-untilexpectedconditions-doesnt-work-any-more-in-selenium -->
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>21.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>3.2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+    <!-- https://mvnrepository.com/artifact/net.sf.opencsv/opencsv -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.11</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -576,34 +602,7 @@
         <env_browser>chrome-remote</env_browser>
         <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
       </properties>
-      <dependencies>
-        <dependency>
-          <groupId>net.sf.opencsv</groupId>
-          <artifactId>opencsv</artifactId>
-          <version>2.3</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <!-- why using guava here? see: https://stackoverflow.com/questions/42421148/wait-untilexpectedconditions-doesnt-work-any-more-in-selenium -->
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-          <version>21.0</version>
-        </dependency>
-        <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-java</artifactId>
-          <version>3.2.0</version>
-          <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
-        <!-- https://mvnrepository.com/artifact/net.sf.opencsv/opencsv -->
-        <dependency>
-          <groupId>org.testng</groupId>
-          <artifactId>testng</artifactId>
-          <version>6.11</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
+
       <build>
         <defaultGoal>clean prepare-package</defaultGoal>
         <testResources>
