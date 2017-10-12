@@ -37,6 +37,7 @@ pipeline {
         stage ('Start tomcat') {
             steps {
                 sh 'ssh ${CONN} "${TOMCAT_HOME}/bin/catalina.sh start"'
+                sh './wait_until_deployed.sh ${ENV_URL}'
             }
         }
         stage ('Selenium tests') {
