@@ -40,7 +40,7 @@ pipeline {
         }
         stage ('Selenium tests') {
             steps {
-                sh 'mvn -Pselenium-tests -Denv_url=${EVN_URL} -Denv_browser=${ENV_BROWSER}'
+                sh 'mvn -Pselenium-tests -Denv_url=${ENV_URL} -Denv_browser=${ENV_BROWSER}'
             }
             post {
                 success {

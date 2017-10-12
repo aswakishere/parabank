@@ -601,6 +601,7 @@
         <webdriver_url>http://localhost:4444/wd/hub</webdriver_url>
         <env_browser>chrome-remote</env_browser>
         <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+        <env_csvData>${testOutputDirectory}/ft/csvData</env_csvData>
       </properties>
 
       <build>

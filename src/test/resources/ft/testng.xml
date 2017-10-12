@@ -5,7 +5,7 @@
   <parameter name="browser" value="${env_browser}"></parameter>
   <parameter name="endRow" value="1"></parameter>
   <parameter name="startRow" value="1"></parameter>
-  <parameter name="csvFile" value="/home/marcin/git/codementor/aswakishere/ParabankSeleniumTests/src/resources/csvData"></parameter>
+  <parameter name="csvFile" value="${env_csvData}"></parameter>
     <classes>
       <class name="com.parasoft.ft.AccountsOverViewAndTransferFunds"/>
       <class name="com.parasoft.ft.GoogleFT"/>
