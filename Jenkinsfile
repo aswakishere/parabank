@@ -4,6 +4,7 @@ pipeline {
         CONN = 'marcin@172.17.0.1'
         TOMCAT_HOME = '/home/marcin/tools/apache-tomcat-8.5.23'
         ENV_URL = 'http://172.17.0.1:8080/parabank-3.0.0-SNAPSHOT/index.htm?ConnType=JDBC'
+        WEBDRIVER_URL = 'http://172.17.0.1:4444/wd/hub'
         ENV_BROWSER = 'chrome-remote'
     }
     tools {
@@ -40,7 +41,7 @@ pipeline {
         }
         stage ('Selenium tests') {
             steps {
-                sh 'mvn -Pselenium-tests -Denv_url=${ENV_URL} -Denv_browser=${ENV_BROWSER}'
+                sh 'mvn -Pselenium-tests -Denv_url=${ENV_URL} -Denv_browser=${ENV_BROWSER} -Dwebdriver_url=${WEBDRIVER_URL}'
             }
             post {
                 success {
