@@ -3,6 +3,8 @@ pipeline {
     environment{
         CONN = 'marcin@172.17.0.1'
         TOMCAT_HOME = '/home/marcin/tools/apache-tomcat-8.5.23'
+        ENV_URL = 'http://172.17.0.1:8080/parabank-3.0.0-SNAPSHOT/index.htm?ConnType=JDBC'
+        ENV_BROWSER = 'chrome-remote'
     }
     tools {
         maven 'mvn_3.5'
@@ -36,9 +38,9 @@ pipeline {
                 sh 'ssh ${CONN} "${TOMCAT_HOME}/bin/catalina.sh start"'
             }
         }
-        stage ('Functional tests') {
+        stage ('Selenium tests') {
             steps {
-                sh 'mvn -DskipTests verify'
+                sh 'mvn -Pselenium-tests -Denv_url=${EVN_URL} -Denv_browser=${ENV_BROWSER}'
             }
             post {
                 success {
