@@ -26,6 +26,11 @@ pipeline {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true clean package'
             }
+            post {
+              always {
+                junit "target/**/*.xml"
+              }
+            }
         }
         stage ('Deploy') {
             steps {
@@ -42,12 +47,13 @@ pipeline {
         }
         stage ('Selenium tests') {
             steps {
-                sh 'mvn -Pselenium-tests -Denv_url=${ENV_URL} -Denv_browser=${ENV_BROWSER} -Dwebdriver_url=${WEBDRIVER_URL}'
+                sh 'mvn -Pselenium-tests -Denv_url=${ENV_URL} -Denv_browser=${ENV_BROWSER} -Dwebdriver_url=${WEBDRIVER_URL} -Dmaven.test.failure.ignore=true'
             }
             post {
                 success {
                     junit 'target/**/*.xml'
                     jacoco(execPattern: 'target/jacoco.exec')
+                    archive "target/**/*"
                 }
             }
         }
