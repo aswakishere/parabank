@@ -108,4 +108,7 @@ public class BaseClass {
     return driver;
   }
 
+  public WebDriver getDriver() {
+    return driver;
+  }
 }
