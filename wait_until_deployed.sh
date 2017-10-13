@@ -5,10 +5,10 @@ echo $1
 maxRetry=20
 retry=1
 #until [ $retry < $maxRetry ] && [ "`curl --silent --show-error --connect-timeout 1 -I ${1} | grep 'HTTP/1.1 200'`" != "" ];
-until (( $retry > $maxRetry )) || [ "`curl --silent --show-error --connect-timeout 1 -I ${1} | grep 'HTTP/1.1 200'`" != "" ];
+until (( $retry > $maxRetry )) || [ "`curl --silent --show-error --connect-timeout 1 -I -L ${1} | grep 'HTTP/1.1 200'`" != "" ];
 do
   echo --- sleeping for 30 seconds
-  sleep 10
+  sleep 30
   retry=$(($retry + 1))
 done
 
