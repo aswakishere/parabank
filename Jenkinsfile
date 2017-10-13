@@ -3,8 +3,7 @@ pipeline {
     environment{
         CONN = 'marcin@172.17.0.1'
         TOMCAT_HOME = '/home/marcin/tools/apache-tomcat-8.5.23'
- //       ENV_URL = 'http://172.17.0.1:8080/parabank-3.0.0-SNAPSHOT/index.htm?ConnType=JDBC'
-        ENV_URL = 'http://172.17.0.1:8080/parabank-3.0.0-SNAPSHOT/index.htm'
+        ENV_URL = 'http://172.17.0.1:8080/parabank-3.0.0-SNAPSHOT/index.htm?ConnType=JDBC'
         INITIALIZE_URL = 'http://172.17.0.1:8080/parabank-3.0.0-SNAPSHOT/initializeDB.htm'
         WEBDRIVER_URL = 'http://172.17.0.1:4444/wd/hub'
         ENV_BROWSER = 'chrome-remote'
