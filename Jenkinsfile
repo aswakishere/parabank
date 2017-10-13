@@ -26,11 +26,11 @@ pipeline {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true clean package'
             }
-            post {
-              always {
-                junit "target/**/*.xml"
-              }
-            }
+//           post {
+//             always {
+//                junit "target/**/*.xml"
+//              }
+//           }
         }
         stage ('Deploy') {
             steps {
