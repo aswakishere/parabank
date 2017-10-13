@@ -34,7 +34,7 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
-                sh 'ssh ${CONN} rm -R ${TOMCAT_HOME}/webapps/parabank-3.0.0*'
+                sh 'ssh ${CONN} rm -f -R ${TOMCAT_HOME}/webapps/parabank-3.0.0*'
                 sh 'ssh ${CONN} ls ${TOMCAT_HOME}/webapps/'
                 sh 'scp target/parabank-3.0.0-SNAPSHOT.war ${CONN}:${TOMCAT_HOME}/webapps/'
             }
