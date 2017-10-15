@@ -4,7 +4,7 @@ pipeline {
         CONN='tomcat@localhost'
         TOMCAT_HOME = '/home/tomcat/apps/apache-tomcat-8.5.23'
         ENV_URL = 'http://localhost:8082/parabank-3.0.0-SNAPSHOT/index.htm?ConnType=JDBC'
-        INITIALIZE_URL = 'http://localhost:8080/parabank-3.0.0-SNAPSHOT/initializeDB.htm'
+        INITIALIZE_URL = 'http://localhost:8082/parabank-3.0.0-SNAPSHOT/initializeDB.htm'
         WEBDRIVER_URL = 'http://localhost:4444/wd/hub'
         ENV_BROWSER = 'chrome'
     }
