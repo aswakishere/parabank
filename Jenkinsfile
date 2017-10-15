@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{
         CONN='tomcat@localhost'
-        TOMCAT_HOME = '/home/tomcat/apps/apache-tomcat-8.5.23'
+        TOMCAT_HOME = '/hdd/apache-tomcat-8.5.23'
         ENV_URL = 'http://localhost:8082/parabank-3.0.0-SNAPSHOT/index.htm?ConnType=JDBC'
         INITIALIZE_URL = 'http://localhost:8082/parabank-3.0.0-SNAPSHOT/initializeDB.htm'
         WEBDRIVER_URL = 'http://localhost:4444/wd/hub'
